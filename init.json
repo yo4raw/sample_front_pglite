@@ -1,0 +1,7 @@
+[
+  { "title": "PGliteのドキュメントを読む", "completed": false },
+  { "title": "Drizzle ORMのCRUD操作を試す", "completed": false },
+  { "title": "Viteの設定を理解する", "completed": true },
+  { "title": "Docker Composeで環境構築する", "completed": true },
+  { "title": "IndexedDBの永続化を確認する", "completed": false }
+]

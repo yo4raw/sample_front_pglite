@@ -24,7 +24,9 @@
 
 import { PGlite } from "@electric-sql/pglite";
 import { drizzle } from "drizzle-orm/pglite";
+import { count } from "drizzle-orm";
 import { todos } from "./schema.js";
+import initData from "../init.json";
 
 /**
  * PGliteクライアントの作成
@@ -78,4 +80,30 @@ export async function initializeDatabase() {
       created_at TIMESTAMP NOT NULL DEFAULT now()
     );
   `);
+
+  // ===== 初期データの投入 =====
+  // テーブルが空の場合のみ、init.jsonから初期データを投入する。
+  // 2回目以降のアクセスでは既にデータがあるためスキップされる。
+  //
+  // count() はDrizzleの集計関数で、レコード数を返す。
+  // db.select({ count: count() }).from(todos) は
+  //   SELECT count(*) AS count FROM todos
+  // と同等のSQLを発行する。
+  const [{ count: rowCount }] = await db
+    .select({ count: count() })
+    .from(todos);
+
+  if (Number(rowCount) === 0) {
+    // init.jsonの内容をDBに一括挿入する。
+    // Drizzleのinsert().values()には配列を渡すことで
+    // 複数レコードを一度にINSERTできる。
+    //
+    // 発行されるSQL:
+    //   INSERT INTO todos (title, completed) VALUES
+    //     ('PGliteのドキュメントを読む', false),
+    //     ('Drizzle ORMのCRUD操作を試す', false),
+    //     ...
+    await db.insert(todos).values(initData);
+    console.log(`init.jsonから${initData.length}件の初期データを投入しました`);
+  }
 }
