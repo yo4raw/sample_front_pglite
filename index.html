@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PGlite + Drizzle TODOアプリ</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>PGlite + Drizzle TODO</h1>
+      <p class="description">
+        ブラウザ内PostgreSQL（PGlite）とDrizzle ORMで動くTODOアプリ
+      </p>
+
+      <!-- TODO追加フォーム -->
+      <form id="todo-form">
+        <input
+          type="text"
+          id="todo-input"
+          placeholder="新しいTODOを入力..."
+          autocomplete="off"
+        />
+        <button type="submit">追加</button>
+      </form>
+
+      <!-- TODO一覧の表示エリア -->
+      <ul id="todo-list">
+        <p class="loading">読み込み中...</p>
+      </ul>
+    </div>
+
+    <!--
+      Viteではtype="module"でESModulesを直接読み込める。
+      src/app.jsがエントリーポイントとなり、
+      そこからdb.jsやschema.jsがimportされる。
+    -->
+    <script type="module" src="/src/app.js"></script>
+  </body>
+</html>

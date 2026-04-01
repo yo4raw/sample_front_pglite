@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    ports:
+      - "5173:5173"
+    volumes:
+      # ホストのソースコードをコンテナにマウント（ホットリロード用）
+      - .:/app
+      # node_modulesはコンテナ内のものを使用
+      # （ホスト側のnode_modulesで上書きされないようにする）
+      - /app/node_modules

@@ -1,0 +1,29 @@
+{
+  "name": "sample_front_pglite",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yo4raw/sample_front_pglite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yo4raw/sample_front_pglite/issues"
+  },
+  "homepage": "https://github.com/yo4raw/sample_front_pglite#readme",
+  "dependencies": {
+    "@electric-sql/pglite": "^0.4.2",
+    "drizzle-orm": "^0.45.2"
+  },
+  "devDependencies": {
+    "vite": "^8.0.3"
+  }
+}
